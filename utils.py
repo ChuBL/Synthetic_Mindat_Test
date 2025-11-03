@@ -7,20 +7,22 @@ import sys
 import time
 import json
 from typing import Optional, Sequence, Union
-
 from openai import AzureOpenAI
 import tqdm
 import copy
+from dotenv import load_dotenv
+
+load_dotenv(override=True)
 
 StrOrOpenAIObject = Union[str, dict]
 
-azure_endpoint = "https://ai-openaiwebui300260177230.services.ai.azure.com"
-api_version = "2025-01-01-preview"
-deployment_name = "gpt-4o-mini"
+azure_endpoint = os.getenv("AZURE_OPENAI_API_ENDPOINT")
+api_version = os.getenv("AZURE_OPENAI_API_VERSION")
+deployment_name = os.getenv("AZURE_DEPLOYMENT_NAME")
 
 client = AzureOpenAI(
     azure_endpoint=azure_endpoint,
-    api_key=os.getenv("OPENAI_GPT4o_API_KEY"),
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
     api_version=api_version,
 )
 
@@ -160,3 +162,25 @@ def jload(f, mode="r"):
     jdict = json.load(f)
     f.close()
     return jdict
+
+
+if __name__ == "__main__":
+    pass
+    # Test the connection with a simple prompt
+    # try:
+    #     response = client.chat.completions.create(
+    #         model=deployment_name,
+    #         messages=[
+    #             {"role": "system", "content": "You are a helpful assistant."},
+    #             {"role": "user", "content": "Hello! Can you confirm you're working?"}
+    #         ],
+    #         max_tokens=50
+    #     )
+        
+    #     print("Connection successful!")
+    #     print(f"Response: {response.choices[0].message.content}")
+    #     print(f"Model used: {response.model}")
+    #     print(f"Tokens used: {response.usage.total_tokens}")
+        
+    # except Exception as e:
+    #     print(f"Connection failed: {str(e)}")

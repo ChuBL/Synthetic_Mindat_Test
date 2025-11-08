@@ -179,7 +179,7 @@ if __name__ == "__main__":
         
     #     print("Connection successful!")
     #     print(f"Response: {response.choices[0].message.content}")
-    #     print(f"Model used: {response.model}")
+    #     print(f"Model used: {response.model}") # gpt-4.1-2025-04-14
     #     print(f"Tokens used: {response.usage.total_tokens}")
         
     # except Exception as e:

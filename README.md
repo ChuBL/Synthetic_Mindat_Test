@@ -6,4 +6,4 @@ This is a forked and modified repository of [stanford_alpaca](https://github.com
 
 ## Usage
 
-The entry point of the project is `generate_instruction_v7.py`.
+The entry point of this project is `generate_instruction_v8.py`.
